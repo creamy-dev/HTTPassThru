@@ -1,0 +1,45 @@
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<title>Log In | HTTPassThru</title>
+
+<div class="divmagic">
+  <li><a href="/">Go Back</a></li>
+  <h4 class="sign0">Log In</h4>
+  <div class="input-field col s6 username">
+    <input id="username" type="text" class="validate">
+    <label for="username">Username</label>
+  </div>
+  <div class="input-field col s6 password">
+    <input id="password" type="password" class="validate">
+    <label for="password">Password</label>
+  </div>
+  <button onclick="signup()" class="waves-effect waves-light btn loginbutton">Log In</button>
+</div>
+
+<script>
+  function signup() {
+    let loginInfo = {};
+    loginInfo.username = document.getElementById("username").value;
+    loginInfo.password = document.getElementById("password").value;
+
+    $.ajax({
+      url: "/httpassthru/api/login",
+      type: "POST",
+      dataType: 'json',
+      contentType: "application/json",
+      data: JSON.stringify({
+        "pass": loginInfo.password,
+        "uname": loginInfo.username
+      }),
+      success: function(text) {
+        window.location.replace("/httpassthru/admin.html");
+    }
+  })
+  }
+</script>
+

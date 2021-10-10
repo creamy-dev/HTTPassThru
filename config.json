@@ -1,0 +1,8 @@
+{
+  "port": 8080,
+  "targetURL": "https://greysoh.xyz",
+  "servURL": "https://httpassthru.glitch.me",
+  "uri": "mongo_uri_goes_here",
+  "db": "httpassthru",
+  "masterPassword": "password"
+}

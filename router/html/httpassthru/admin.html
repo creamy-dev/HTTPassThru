@@ -1,0 +1,76 @@
+<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+<title>Admin Mode | HTTPassThru</title>
+
+<nav>
+    <div class="nav-wrapper blue">
+      <a href="/httpassthru" class="brand-logo">&nbsp;HTTPassThru</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/">Go Back</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+        <li><a href="login.html">Log In</a></li>
+        <li><a href="admin.html">Manage Account</a></li>
+        <li><a href="rules.html">Cookie + Privacy Policy info.</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<h20 style="position: absolute;left:7px;top:70px;">
+    <b>Your Config</b><br>
+    This is the config for your site choice. If you set it to 'base' (case-sensitive!) you will see the default one.
+    <div class="input-field col s6">
+      <input id="siteurl2" type="text" class="validate">
+      <label for="siteurl2">Website URL</label>
+    </div>
+    <button onclick="change2()" class="waves-effect waves-light btn">Change Yours</button><br>
+    <b>Master Site Config</b><br>
+    This is the Site URL to update the default website view.
+    <div class="input-field col s6">
+      <input id="siteurl" type="text" class="validate">
+      <label for="siteurl">Website URL</label>
+    </div>
+    This is the password to update the default website view. Your account password will not work, you need the root password to the app.
+    <div class="input-field col s6">
+      <input id="sitepass" type="password" class="validate">
+      <label for="sitepass">Password</label>
+    </div>
+    <button onclick="change()" class="waves-effect waves-light btn">Change Default</button>
+</h20>
+
+<script>
+  function change() {
+    $.ajax({
+      url: "/httpassthru/api/modifyrooturl",
+      type: "POST",
+      dataType: 'json',
+      contentType: "application/json",
+      data: JSON.stringify({
+        "url": document.getElementById("siteurl").value,
+        "pass": document.getElementById("sitepass").value
+      }),
+      success: function(text) {
+        window.location.replace("/httpassthru/admin.html");
+    }
+  })
+  }
+
+  function change2() {
+    $.ajax({
+      url: "/httpassthru/api/changeaccounturl",
+      type: "POST",
+      dataType: 'json',
+      contentType: "application/json",
+      data: JSON.stringify({
+        "url": document.getElementById("siteurl2").value
+      }),
+      success: function(text) {
+        window.location.replace("/httpassthru/admin.html");
+    }
+  })
+  }
+</script>
