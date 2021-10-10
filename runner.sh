@@ -1,6 +1,6 @@
 #!/bin/bash
 echo HTTPassThru Auto-Updater.
-cp httpassthru/config.json . > /dev/null 2> /dev/null
+cp HTTPassThru/config.json . > /dev/null 2> /dev/null
 rm -rf HTTPassThru > /dev/null 2> /dev/null
 git clone https://github.com/creamy-dev/HTTPassThru.git
 rm -rf HTTPassThru/config.json
